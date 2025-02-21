@@ -1,27 +1,24 @@
-# nRF9160 Device Test Script
+# nRF Device Test Suite
 
-## Overview
-Test script for nRF9160 device with WiFi and location capabilities. This script handles device flashing, network configuration, WiFi scanning, and location services using both WiFi and cellular methods.
+Automated test suite for nRF devices that performs network connectivity, WiFi scanning, and location service tests.
 
 ## Features
-- Custom Modem Shell flashing
+
 - RTT communication verification
-- Network status monitoring
+- Network connection monitoring
 - WiFi scanning capabilities
-- WiFi-based location services
-- PDN connection management
-- Boot sequence verification
-- Network mode configuration (LTE-M/NB-IoT)
-- Automated device testing
+- Location services testing:
+  - WiFi-based location
+  - Cellular-based location
+  - GNSS location (optional)
+- Automated test reporting
+- JSON output generation
 
 ## Requirements
-- Python 3.x
-- pynrfjprog
-- pylink-square
-- colorama
-- nRF Connect SDK v2.9.0 or later
-- J-Link software
-- nRF9160 development kit
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Installation
 1. Install required Python packages:
