@@ -1,5 +1,7 @@
-# Test Reports
+# Test Reports and Results
 test_report_*.json
+test_results/
+*.csv
 
 # Python
 __pycache__/
@@ -27,14 +29,19 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
+.env
+.venv
+.python-version
 
 # IDE specific files
 .idea/
 .vscode/
 *.swp
 *.swo
+*.sublime-workspace
+*.sublime-project
 
-# OS
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -43,21 +50,32 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
+# nRF and J-Link specific
 *.hex
-*.log
-rtt_debug.log
 *.bin
-merged.hex
 *.elf
 *.map
 *.out
+merged.hex
+settings.json
+*.jlink
+*.emSession
+*.log
 
-# Debug logs
+# Debug and logs
 debug/
 logs/
+*.log
+rtt_debug.log
 *.log.*
+crash_reports/
 
 # Local configuration
-.env
-.venv
+config.local.ini
+secrets.ini
+credentials.json
+
+# Backup files
+*~
+*.bak
+*.backup

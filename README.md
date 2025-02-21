@@ -2,101 +2,106 @@
 
 Automated test suite for nRF devices that performs network connectivity, WiFi scanning, and location service tests.
 
-## Features
+## Overview
+This test suite provides automated testing for nRF9160 devices, including network connectivity verification, WiFi scanning capabilities, and various location services testing (WiFi, Cellular, and GNSS).
 
-- RTT communication verification
-- Network connection monitoring
-- WiFi scanning capabilities
-- Location services testing:
-  - WiFi-based location
-  - Cellular-based location
-  - GNSS location (optional)
-- Automated test reporting
-- JSON output generation
+## Features
+- Device Information Retrieval (IMEI, IMSI)
+- RTT Communication Verification
+- Network Connection Monitoring
+- WiFi Capabilities:
+  - Network Scanning
+  - WiFi-based Location
+- Location Services:
+  - WiFi-based Positioning
+  - Cellular-based Positioning
+  - GNSS Location (Optional, User-prompted)
+- Automated Test Reporting:
+  - JSON Format Output
+  - Detailed Failure Reporting
+  - Test Result Summary
 
 ## Requirements
-
-```bash
-pip install -r requirements.txt
-```
+- Python 3.7 or later
+- nRF Connect SDK v2.9.0 or later
+- J-Link Software (Latest Version)
+- nRF9160 Development Kit
 
 ## Installation
-1. Install required Python packages:
+
+1. Clone the repository:
+```bash
+git clone https://github.com/semihaydinai/test_script_nRF91.git
+cd test_script_nRF91
+```
+
+2. Install required packages:
 ```bash
 pip3 install -r requirements.txt
 ```
 
-2. Additional requirements:
-- nRF Connect SDK v2.9.0 or later
-- J-Link software (latest version)
-- nRF9160 development kit
-
 ## Usage
+
 Basic usage:
 ```bash
-python3 test_script.py --hex merged.hex
+python3 test_script.py
 ```
 
-Optional arguments:
-```bash
---hex       Path to hex file (required)
---sn        J-Link serial number (optional)
---verbose   Enable verbose output (optional)
-```
+## Test Flow
+1. **Device Connection**
+   - RTT Communication Setup
+   - AT Command Verification
+   - Device Info Collection (IMEI/IMSI)
 
-## Configuration
-The script supports:
-- LTE-M and NB-IoT network modes
-- PDN connection setup for data services
-- WiFi scanning with signal strength reporting
-- Location services using WiFi and cellular
-- RTT communication verification
-- Boot sequence monitoring
+2. **Network Tests**
+   - Registration Status Check
+   - Home/Roaming Network Detection
 
-## Status Indicators
-- ✓ : Test passed/feature working
-- ✗ : Test failed/feature not working
+3. **WiFi Tests**
+   - Network Scanning
+   - Access Point Detection
+   - Signal Strength Measurement
 
-## Output Example
-```
-=== Starting WiFi Scan ===
-Waiting for scan results...
-Num  | SSID                             (len) | Chan (Band)   | RSSI | Security
-1    | Network1                         8     | 6    (2.4GHz) | -50  | WPA2-PSK
-...
-WiFi scan: ✓
+4. **Location Services**
+   - WiFi-based Location
+   - Cellular-based Location
+   - GNSS Location (Optional)
 
-=== Starting WiFi Location Test ===
-Waiting for location results...
-Location: 52.3740, 4.8897
-WiFi location: ✓
+## Output Format
+The script generates a JSON report containing:
+```json
+{
+  "imei": "123456789012345",
+  "imsi": "234567890123456",
+  "timestamp": "2025-02-21T14:30:00.123456",
+  "overall_status": "Successful",
+  "test_results": {
+    "wifi_scan": {
+      "status": "Successful",
+      "details": "Found 4 networks"
+    },
+    "wifi_location": {
+      "status": "Successful",
+      "coordinates": {
+        "latitude": 52.3761,
+        "longitude": 4.8962
+      }
+    }
+  }
+}
 ```
 
 ## Error Handling
-The script includes error handling for:
-- Device connection failures
-- Network registration issues
-- PDN connection problems
-- WiFi scan timeouts
-- Location service failures
-
-## Troubleshooting
-1. If device not found:
-   - Check USB connection
-   - Verify J-Link driver installation
-   - Check device serial number
-
-2. If network registration fails:
-   - Verify SIM card installation
-   - Check antenna connection
-   - Verify network coverage
-
-3. If WiFi scan fails:
-   - Check WiFi module initialization
-   - Verify antenna connection
+- Comprehensive error reporting with actual device responses
+- Automatic cleanup on script interruption
+- Detailed failure reasons in JSON output
 
 ## Contributing
-Feel free to submit issues and enhancement requests.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
